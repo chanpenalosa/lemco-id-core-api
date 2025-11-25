@@ -1,0 +1,58 @@
+# Visual Studio files and folders
+.vs/
+*.user
+*.suo
+*.sln.cache
+*.VC.db
+*.VC.VC.opendb
+*.VC.VC.VC.opendb
+*.VC.VC.VC.VC.opendb
+*.VC.VC.VC.VC.VC.opendba
+*.VC.VC.VC.VC.VC.VC.opendb
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.obj
+*.lib
+*.exp
+*.winmd
+*.appx
+*.appxbundle
+*.pri
+*.sgen
+*.vshost.*
+*.manifest
+*.deploy
+*.cache
+*.resources
+*.tlb
+*.tlh
+*.tmp
+*.log
+*.bak
+*.old
+
+# NuGet packages
+**/packages/*
+!**/packages/build/
+
+# Web-related files (if applicable, e.g., for hybrid desktop/web apps)
+.sass-cache/
+publish/
+*.publish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# Miscellaneous
+*.vsp
+*.vspx
+$tf/
+*.gpState

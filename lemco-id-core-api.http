@@ -1,0 +1,6 @@
+@lemco_id_core_api_HostAddress = http://localhost:5267
+
+GET {{lemco_id_core_api_HostAddress}}/Employee/
+Accept: application/json
+
+###
