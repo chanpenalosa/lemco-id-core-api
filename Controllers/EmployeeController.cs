@@ -2,7 +2,9 @@
 using lemco_id_core_api.Interfaces;
 using lemco_id_core_api.Models;
 using lemco_id_core_api.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Mysqlx;
 using System.Diagnostics;
 
 namespace lemco_id_core_api.Controllers
@@ -36,13 +38,8 @@ namespace lemco_id_core_api.Controllers
 
         [HttpPatch]
         public ActionResult<bool> UpdateEmployee([FromBody] Employee e) {
-            return Ok(empMgr.UpdateEmployee(e));
-        }
-
-        [HttpOptions]
-        public ActionResult<bool> UpdateEmployee()
-        {
-            return Ok(true);
+            if (empMgr.UpdateEmployee(e)) return Json(new { success = true });
+            return StatusCode(500, Json(new { success=false}));
         }
 
         [HttpPost]
@@ -51,7 +48,7 @@ namespace lemco_id_core_api.Controllers
             return Ok(empMgr.MarkAsPrinted(id));
         }
 
-        [HttpGet("{id}/get-image")]
+        [HttpGet("{id}/image")]
         public IActionResult GetImage(int id) {
 
             string path = "D:\\dev\\lemco\\Photo\\";

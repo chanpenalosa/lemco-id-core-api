@@ -100,7 +100,8 @@ namespace lemco_id_core_api.Data
                                 pagibig     = reader["Pagibig"].ToString(),
                                 contactPerson = reader["ContactPerson"].ToString(),
                                 contactAddress = reader["ContactAddress"].ToString(),
-                                contactNumber = reader["ContactNumber"].ToString() 
+                                contactNumber = reader["ContactNumber"].ToString(),
+                                imgURL = $"https://localhost:44371/api/Employee/{int.Parse(reader["IDNumber"].ToString())}/image"
                             };
 
                             if (DateTime.TryParse(reader["datePrinted"].ToString(), out datePrinted)) { 
