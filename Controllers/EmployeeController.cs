@@ -49,6 +49,14 @@ namespace lemco_id_core_api.Controllers
             return StatusCode(500, Json(new { success = false }));
         }
 
+
+        //GetPrintLogs
+        [HttpGet("get-logs")]
+        public ActionResult<PrintLogs> GetPrintLogs() { 
+            return Ok(empMgr.GetPrintLogs());
+        }
+
+
         [HttpGet("{id}/image")]
         public IActionResult GetImage(int id) {
 

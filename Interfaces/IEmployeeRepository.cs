@@ -8,5 +8,6 @@ namespace lemco_id_core_api.Interfaces
         ResponseFormat GeToptEmployees(int size, string searchKey);
         bool UpdateEmployee(Employee e);
         bool MarkAsPrinted(int id);
+        PrintLogs GetPrintLogs();
     }
 }

@@ -2,6 +2,8 @@
 using lemco_id_core_api.Models;
 using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace lemco_id_core_api.Data
 {
@@ -252,5 +254,42 @@ namespace lemco_id_core_api.Data
                 }
             }
         }
+
+        public PrintLogs GetPrintLogs()
+        {
+            using (MySqlConnection conn = new MySqlConnection(_conStr)) {
+
+                string sql = "SELECT datePrinted, " +
+                    "concat(Lname,', ' , Fname) as fullname, b.IDNumber  " +
+                    "FROM particles_as.tbl_idprintlogs a " +
+                    "LEFT JOIN tbl_personalinfo b ON a.IDNumber = b.IDNumber";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn)) {
+                    conn.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader == null) return null;
+
+                        PrintLogs empList = new PrintLogs();
+
+                        while (reader.Read())
+                        {
+                            PrintLogItem emp = new PrintLogItem()
+                            {
+                                systemId = int.Parse(reader["IDNumber"].ToString()),
+                                FullName = reader["fullname"].ToString(),
+                                DatePrinted = Convert.ToDateTime(reader["datePrinted"]),
+                                imgURL = $"https://localhost:44371/api/Employee/{int.Parse(reader["IDNumber"].ToString())}/image"
+                            };
+                           
+                            empList.data.Add(emp);
+                        }
+                        conn.Close();
+                        return empList;
+                    }
+                }
+            }
+            }
+        }
     }
-}
+

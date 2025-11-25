@@ -28,5 +28,9 @@ namespace lemco_id_core_api.Services
         public bool MarkAsPrinted(int id) {
             return _repo.MarkAsPrinted(id);
         }
+
+        public PrintLogs GetPrintLogs() { 
+            return _repo.GetPrintLogs();
+        }
     }
 }
