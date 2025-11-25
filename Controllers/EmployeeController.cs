@@ -45,7 +45,8 @@ namespace lemco_id_core_api.Controllers
         [HttpPost]
         [Route("{id}/mark-as-printed")]
         public ActionResult<int> MarkAsPrinted(int id) {
-            return Ok(empMgr.MarkAsPrinted(id));
+            if (empMgr.MarkAsPrinted(id)) return Json(new { success = true });
+            return StatusCode(500, Json(new { success = false }));
         }
 
         [HttpGet("{id}/image")]
