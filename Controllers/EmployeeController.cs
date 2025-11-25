@@ -51,8 +51,17 @@ namespace lemco_id_core_api.Controllers
             return Ok(empMgr.MarkAsPrinted(id));
         }
 
+        [HttpGet("{id}/get-image")]
+        public IActionResult GetImage(int id) {
 
-
+            string path = "D:\\dev\\lemco\\Photo\\";
+            var imgPath = Path.Combine(path, id.ToString()+ ".JPG");
+;
+            if (!System.IO.File.Exists(imgPath)) imgPath = Path.Combine(path,"1.JPG");
+            
+            var imageFile = new FileStream(imgPath, FileMode.Open, FileAccess.Read);   
+            return File(imageFile,"image/JPG");
+        }
       
     }
 }
